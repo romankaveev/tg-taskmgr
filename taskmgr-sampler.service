@@ -1,0 +1,16 @@
+[Unit]
+Description=tg-taskmgr sampler (writes /run/taskmgr/state.json)
+After=network.target
+
+[Service]
+DynamicUser=yes
+ExecStart=/usr/bin/python3 -I /opt/tg-taskmgr/sampler.py
+RuntimeDirectory=taskmgr
+RuntimeDirectoryMode=0755
+Nice=10
+Restart=always
+RestartSec=5
+MemoryMax=64M
+
+[Install]
+WantedBy=multi-user.target
